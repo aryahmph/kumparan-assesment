@@ -1,0 +1,45 @@
+CREATE TABLE IF NOT EXISTS articles
+(
+    id          uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
+    author_id   uuid             NOT NULL REFERENCES authors,
+    title       varchar(255)     NOT NULL,
+    body        TEXT             NOT NULL,
+    text_search tsvector GENERATED ALWAYS AS ( setweight(to_tsvector('indonesian', title), 'A') ||
+                                               setweight(to_tsvector('indonesian', body), 'D') ) STORED,
+    created_at  timestamp        NOT NULL DEFAULT (NOW())
+);
+
+INSERT INTO articles(author_id, title, body)
+VALUES ('927ef3a7-08be-41b8-a156-e75f5cfe199e', 'Harga Resmi Macbook Pro M2 di Indonesia',
+        'Laptop anyar Apple dengan prosesor M2, MacBook Pro, sudah resmi dijual di Indonesia. Perangkat tersebut bisa dibeli dengan cicilan mulai dari Rp 900 ribuan.'),
+       ('927ef3a7-08be-41b8-a156-e75f5cfe199e', 'Apple Rilis MacBook Pro 2021: Layar Poni iPhone, Touch Bar Hilang',
+        'Apple resmi memperkenalkan laptop flagship terbarunya,
+        MacBook Pro 2021 di acara Apple Event yang digelar Selasa (18/10) dini hari pukul 00.00 WIB. MacBook Pro kali ini membawa sejumlah perubahan,
+        terutama soal desain yang sangat berbeda dengan generasi sebelumnya.'),
+       ('d3ad2722-675e-4d94-935a-a31fb5495dbf',
+        'Apple Rilis MacBook Air dan MacBook Pro 2022 Chip M2, Berapa Harganya?',
+        'Apple akhirnya melakukan peremajaan MacBook Air. Laptop yang terakhir dirilis pada akhir 2020 lalu resmi mendapatkan generasi terbaru yang diperkenalkan di acara WWDC 2022 pada Selasa (7/6) dini hari.'),
+       ('3604e5c7-6a63-4718-899b-8ff0ae96ac5f',
+        'Penampakan Seram Awan Bersinar Merah ''Stranger Things'' di Atas Samudra Atlantik',
+        'Sebuah postingan di media sosial viral beberapa hari lalu, memuat gambar penampakan awan yang tak biasa. Awan yang tampak menyeramkan itu memancarkan cahaya berwarna merah, mengingatkan kita pada awan merah gemuruh di serial Netflix ''Stranger Things''.'),
+       ('3604e5c7-6a63-4718-899b-8ff0ae96ac5f', 'Begini Tampilan Nugget yang Terinspirasi Stranger Things Season 4',
+        'Stranger Things merupakan serial sci-fi Netflix yang paling banyak digemari oleh para pencinta film di seluruh dunia. Pada 27 Mei 2022 ini, Stranger Thing merilis season keempat. Petualangan Mike dan kawan-kawan masih terus berlanjut hingga mereka remaja.'),
+       ('d3ad2722-675e-4d94-935a-a31fb5495dbf',
+        'Begini Desain Pesawat Komersial Tercepat di Dunia, Jakarta - Tokyo Cuma 3,5 Jam',
+        'Perusahaan penerbangan Boom Supersonic merilis desain terbaru pesawat yang digadang-gadang menjadi pesawat supersonik pertama di dunia dengan teknologi ramah lingkungan. Jika pesawat ini berhasil dibuat, ia bisa mengantarkan penumpang dari Jakarta ke Tokyo, Jepang, hanya 3,5 jam saja.'),
+       ('d3ad2722-675e-4d94-935a-a31fb5495dbf', 'Anak ‘Citayam Fashion Week’ Merapat! Coba Tebak Teka-teki Gambar Ini',
+        'Yang ngaku suka nongkrong di Dukuh Atas, Menteng, Jakarta Pusat, buat ikutan Citayam Fashion Week, kamu wajib ikut tebak gambar ini buat buktiin kalau kalian itu pintar-pintar.'),
+       ('927ef3a7-08be-41b8-a156-e75f5cfe199e', 'Ada Tim Riset Kuat di Balik Sukses Samsung di Indonesia',
+        'Penggemar produk Samsung bersuka ria begitu tahu smartphone Galaxy S22 Series memakai chipset Snapdragon 8 Gen 1, setelah bertahun-tahun sebelumnya mengandalkan prosesor Exynos buatan Samsung. Ada sebuah tim yang kerja keras di balik keputusan itu. Tak lain dan tak bukan, itu terealisasi berkat tim riset yang kuat: Samsung Research Indonesia (SRIN).'),
+       ('927ef3a7-08be-41b8-a156-e75f5cfe199e', 'Inovasi Telkom untuk Digitalisasi Indonesia',
+        'PT Telkom Indonesia terus berkomitmen membawa masyarakat Indonesia menuju masa depan digital. Upaya digitalisasi ini salah satunya diperlukan untuk mempermudah kegiatan masyarakat sehari-hari. Upaya itu diimplementasikan melalui tiga pilar yakni lingkungan digital, masyarakat digital, hingga ekonomi digital.'),
+       ('927ef3a7-08be-41b8-a156-e75f5cfe199e',
+        'Telkomsel Perkuat Sinyal di 38 Titik Lokasi ASEAN Para Games 2022 Solo',
+        'Telkomsel resmi mengambil peran sebagai Official Mobile Partner di gelaran XI ASEAN Para Games 2022 Solo, Jawa Tengah. Perusahaan telah melakukan sejumlah upaya agar sinyal pelanggan tetap kuat dan ''ngebut'' selama pesta olahraga tersebut berlangsung.'),
+       ('3604e5c7-6a63-4718-899b-8ff0ae96ac5f', 'Alasan Bumi Makin Panas Bikin Virus Mudah Pindah ke Manusia',
+        'Penelitian terbaru di jurnal Nature memprediksi bahwa pemanasan global akan menyebabkan 4.000 virus berpindah dari satu mamalia ke yang lain, termasuk yang memiliki potensi berpindah dari hewan ke manusia, per tahun 2070.'),
+       ('3604e5c7-6a63-4718-899b-8ff0ae96ac5f',
+        'Cara Transfer Chat WhatsApp dari HP Android ke iPhone, Kini Sudah Bisa',
+        'WhatsApp akhirnya memungkinkan semua penggunanya untuk memindahkan riwayat percakapannya dari handphone (HP) Android ke iPhone maupun sebaliknya. Kemampuan tersebut merupakan fitur yang ditunggu pengguna selama ini.'),
+       ('d3ad2722-675e-4d94-935a-a31fb5495dbf', 'Kominfo Catat 6.296 PSE Sudah Terdaftar: 6.187 Lokal dan 109 Asing',
+        'Sejumlah Penyelenggara Sistem Elektronik (PSE) Lingkup Privat mulai berjejal melakukan pendaftaran ke Kementerian Komunikasi dan Informatika (Kominfo) sehari sebelum tenggat waktu berlalu.');

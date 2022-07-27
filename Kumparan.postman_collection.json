@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "31e1b8f7-488e-4e30-9fc9-4709656dadf9",
+		"name": "Kumparan",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests a user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14504924"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "cursor",
+							"value": "MjAyMi0wNy0yN1QxMDowMzoxOS44NjExOTRaLDAzNmQ3MzU5LTQzM2MtNDFlZi1hMTdlLTkzYmI0ZTkyZjRkOQ==a",
+							"disabled": true
+						},
+						{
+							"key": "query",
+							"value": "apple",
+							"disabled": true
+						},
+						{
+							"key": "author",
+							"value": "Achmad",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Shinta Kamdani Bawa Perempuan Indonesia Berdaya Ekonomi di Forum B20\",\n    \"body\": \"Forum Business of 20 atau B20 yang diketuai oleh Shinta Widjaja Kamdani, akan menggagas sejumlah agenda dalam Presidensi Indonesia di G20. Shinta Kamdani menjadi perempuan pertama asal Asia yang memimpin salah satu forum bisnis terbesar di dunia ini.\",\n    \"author_id\": \"d3ad2722-675e-4d94-935a-a31fb5495dbf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

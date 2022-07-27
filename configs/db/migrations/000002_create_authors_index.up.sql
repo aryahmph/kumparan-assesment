@@ -1,0 +1,1 @@
+CREATE INDEX name_search_idx ON authors USING GIN (name_search);
